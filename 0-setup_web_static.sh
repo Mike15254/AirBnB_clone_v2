@@ -34,10 +34,6 @@ CONF="server {
 	location /hbnb_static/ {
 		alias /data/web_static/current/;
 	}
-<<<<<<< HEAD
-=======
->>>>>>> 1dcc7d46e29430daba96ebe9887fe39079e91e36
-    add_header X-Served-By $HOSTNAME;
 }"
 echo "$CONF" > /etc/nginx/sites-available/default
 service nginx reload
