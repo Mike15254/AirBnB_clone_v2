@@ -11,7 +11,6 @@ from models.city import City
 from models.amenity import Amenity
 from models.review import Review
 
-# TODO print created objects on the same line as prompt when is not a tty
 
 class HBNBCommand(cmd.Cmd):
     """ Contains the functionality for the HBNB console"""
@@ -129,21 +128,21 @@ class HBNBCommand(cmd.Cmd):
 
         new_instance = HBNBCommand.classes[class_name]()
         try:
-            for i in range(1, len(split_args)): # parse provided object parameters
+            for i in range(1, len(split_args)):
                 key, value = split_str(split_args[i], "=")
                 # parse string
                 if value[0] == '"' and value[len(value) - 1] == '"':
                     value = value.strip("'\"")
                     value = value.replace("_", " ")
-                else: # parse numbers
-                    if "." in value: # float
+                else:  # parse numbers
+                    if "." in value:  # float
                         value = float(value)
                     else:
                         value = int(value)
                 new_instance.__dict__[key] = value
             new_instance.save()
             print(new_instance.id)
-        except Exception as e: # not enough values to unpack / unrecognized value / sql error
+        except Exception as e:
             # print(e)
             pass
 
@@ -341,9 +340,11 @@ class HBNBCommand(cmd.Cmd):
         print("Updates an object with new information")
         print("Usage: update <className> <id> <attName> <attVal>\n")
 
+
 def split_str(args: str, separator=" "):
     """Splits string using given separator"""
     return tuple(args.split(separator))
+
 
 if __name__ == "__main__":
     HBNBCommand().cmdloop()
